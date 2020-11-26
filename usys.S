@@ -8,6 +8,8 @@
     int $T_SYSCALL; \
     ret
 
+
+
 SYSCALL(fork)
 SYSCALL(exit)
 SYSCALL(wait)
@@ -30,3 +32,17 @@ SYSCALL(sbrk)
 SYSCALL(sleep)
 SYSCALL(uptime)
 SYSCALL(halt)
+
+SYSCALL(date)
+
+SYSCALL(getuid)
+SYSCALL(getgid)
+SYSCALL(getppid)
+SYSCALL(setuid)
+SYSCALL(setgid)
+SYSCALL(getprocs)
+
+SYSCALL(setpriority)
+SYSCALL(getpriority)
+
+

@@ -185,6 +185,10 @@ getbuiltin(char *p)
     printf(2, "%d\n", getgid());
     return 0;
   }
+  if (strncmp("ppid", p, 3) == 0) {
+    printf(2, "%d\n", getppid());
+    return 0;
+  }
   printf(2, "Invalid _get parameter\n");
   return -1;
 }

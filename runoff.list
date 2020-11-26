@@ -95,3 +95,6 @@ p2testsuite.c
 p2-test.c
 p3-test.c
 p4-test.c
+
+# CS333 additions for Mark Morrissey
+date.c

@@ -1,4 +1,4 @@
-#ifdef CS333_P3
+#ifdef CS333_P2
 // A starting point for writing your own p3 test program(s).
 // Notes
 // 1. The parent never gets to the wait() call, so killing any child will cause that
@@ -19,7 +19,7 @@
 int
 main(int argc, char *argv[])
 {
-  int rc, i = 0, childCount = 20;
+  int rc, i = 0, childCount = 60;
 
   if (argc > 1) {
     childCount = atoi(argv[1]);

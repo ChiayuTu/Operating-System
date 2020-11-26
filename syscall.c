@@ -106,6 +106,17 @@ extern int sys_uptime(void);
 #ifdef PDX_XV6
 extern int sys_halt(void);
 #endif // PDX_XV6
+// CS333_P1
+extern int sys_date(void);
+// CS333_P2
+extern int sys_getuid(void);
+extern int sys_getgid(void);
+extern int sys_getppid(void);
+extern int sys_setuid(void);
+extern int sys_setgid(void);
+extern int sys_getprocs(void);
+extern int sys_setpriority(void);
+extern int sys_getpriority(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -132,6 +143,17 @@ static int (*syscalls[])(void) = {
 #ifdef PDX_XV6
 [SYS_halt]    sys_halt,
 #endif // PDX_XV6
+// CS333_P1
+[SYS_date]    sys_date,
+// CS333_P2
+[SYS_getuid]  sys_getuid,
+[SYS_getgid]  sys_getgid,
+[SYS_getppid] sys_getppid,
+[SYS_setuid]  sys_setuid,
+[SYS_setgid]  sys_setgid,
+[SYS_getprocs] sys_getprocs,
+[SYS_setpriority] sys_setpriority,
+[SYS_getpriority] sys_getpriority,
 };
 
 #ifdef PRINT_SYSCALLS
@@ -160,6 +182,16 @@ static char *syscallnames[] = {
 #ifdef PDX_XV6
   [SYS_halt]    "halt",
 #endif // PDX_XV6
+  [SYS_date]    "date",
+
+  [SYS_getuid]  "getuid",
+  [SYS_getgid]  "getgid",
+  [SYS_getppid] "getppid", 
+  [SYS_setuid]  "setuid",
+  [SYS_setgid]  "setgid",
+  [SYS_getprocs] "getprocs",
+  [SYS_setpriority] "setpriority",
+  [SYS_setpriority] "getpriority",
 };
 #endif // PRINT_SYSCALLS
 
@@ -172,6 +204,9 @@ syscall(void)
   num = curproc->tf->eax;
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
     curproc->tf->eax = syscalls[num]();
+#ifdef PRINT_SYSCALLS
+    cprintf("%s -> %d\n", syscallnames[num], curproc->tf->eax);
+#endif    
   } else {
     cprintf("%d %s: unknown sys call %d\n",
             curproc->pid, curproc->name, num);
